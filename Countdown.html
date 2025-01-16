@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to January 24, 2025</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            flex-direction: column;
+        }
+        #time-leap-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            color: white;
+            background-color: red;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #time-leap-button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">Loading...</div>
+    <button id="time-leap-button" onclick="window.location.href='https://gburn19.github.io/STJCBC/'">Time Leap</button>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date("January 24, 2025 00:00:00");
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
+
+            if (timeDifference <= 0) {
+                document.getElementById("countdown").textContent = "Time's up!";
+                document.getElementById("time-leap-button").style.display = "block";
+                return;
+            }
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").textContent = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
